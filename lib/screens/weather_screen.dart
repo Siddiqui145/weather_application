@@ -15,7 +15,7 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   final TextEditingController _controller = TextEditingController(
-    text: "London"
+    text: "Boston"
   );
 
   @override
@@ -31,23 +31,25 @@ class _WeatherScreenState extends State<WeatherScreen> {
     final provider = Provider.of<WeatherProvider>(context);
 
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text('Weather Screen',
-        style: Theme.of(context).textTheme.titleMedium,),
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white70),),
+        centerTitle: true,
         backgroundColor: Colors.black,
         actions: [
           IconButton(onPressed: () {
-            provider.getWeather(_controller.text);
-          }, icon: const Icon(Icons.refresh))
+            setState(() {
+              provider.getWeather(_controller.text);
+            });
+          }, icon: const Icon(Icons.refresh, color: Colors.white,))
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(15.0),
         child: provider.isLoading 
         ? const Center(
-          child: CircularProgressIndicator(
-            color: Colors.white70,
-          ),
+          child: CircularProgressIndicator(),
         )
           :    provider.weather == null 
               ?  Center(
@@ -55,36 +57,35 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 style: Theme.of(context).textTheme.bodyLarge,),
               ) 
               : SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    WeatherCard(weather: provider.weather!),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                     Text("Hourly Forecast",
-                    style: Theme.of(context).textTheme.bodySmall,),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    HourlyForecast(hourly: _mockHourly()),
-
-                    const SizedBox(height: 20),
-                        Text("Weekly Forecast", style: Theme.of(context).textTheme.bodySmall,),
-                        const SizedBox(height: 8),
-                        WeeklyForecast(daily: _mockWeekly()),
-
-                    const SizedBox(height: 20),
-                        Text("Air Quality", style: Theme.of(context).textTheme.bodySmall,),
-                        const SizedBox(height: 8),
-                        const AirQualityIndex(aqi: 117, status: "Moderate"),
-                  ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      WeatherCard(weather: provider.weather!),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                
+                       Text("Hourly Forecast",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      HourlyForecast(hourly: _mockHourly()),
+                
+                      const SizedBox(height: 30),
+                          Text("Weekly Forecast", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                          const SizedBox(height: 8),
+                          WeeklyForecast(daily: _mockWeekly()),
+                
+                      const SizedBox(height: 30),
+                          Text("Air Quality", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                          const SizedBox(height: 8),
+                          const AirQualityIndex(aqi: 117, status: "Moderate"),
+                    ],
+                  ),
                 ),
-              )
-            
-          ),
-        );
+      ),
+            );
   }
   List<Map<String, dynamic>> _mockHourly() {
     return List.generate(6, (i) {
