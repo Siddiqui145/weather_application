@@ -15,8 +15,13 @@ class WeatherService {
     return WeatherModel.fromJson(Map<String, dynamic>.from(cacheData));
   }
 
-  final url = "https://api.openweathermap.org/data/2.5/weather?q=$city,uk&APPID=$apiKey";
+  //final url = "https://api.openweathermap.org/data/2.5/weather?q=$city,uk&APPID=$apiKey";
+  final url = "https://api.openweathermap.org/data/2.5/weather?q=$city&APPID=$apiKey&units=metric";
   final response = await http.get(Uri.parse(url));
+
+  print("Request URL: $url");
+  print("Response Body: ${response.body}");
+
 
   if (response.statusCode == 200){
     final jsonData = jsonDecode(response.body);

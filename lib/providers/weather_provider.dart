@@ -10,10 +10,26 @@ class WeatherProvider extends ChangeNotifier{
   bool isLoading = false;
 
   Future<void> getWeather(String city) async {
+
+    if (city.trim().isEmpty) {
+      print("City name is empty");
+      weather = null;
+      isLoading = false;
+      notifyListeners();
+      return;
+      }
+
     isLoading = true;
     notifyListeners();
 
-    weather = await _weatherService.fetchWeather(city);
+    try {
+      final result = await _weatherService.fetchWeather(city);
+      weather = result;
+    }
+    catch (e){
+      print("Error fetching Weather : $e");
+      weather = null;
+    }
 
     isLoading = false;
     notifyListeners();
