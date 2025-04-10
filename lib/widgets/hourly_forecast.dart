@@ -12,17 +12,17 @@ class HourlyForecast extends StatelessWidget {
     return SizedBox(
       height: 110,
 
-      child: ListView.separated(
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: hourly.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        //separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           
           final hour = hourly[index];
 
           return Container(
             margin: EdgeInsets.symmetric(
-              horizontal: 8
+              horizontal: 10
             ),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
@@ -34,12 +34,12 @@ class HourlyForecast extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(hour['time'],
-                style: Theme.of(context).textTheme.bodySmall,),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),),
                 Image.network(
                   'https://openweathermap.org/img/wn/${hour['icon']}@2x.png',
                   width: 40,),
                   Text('${hour['temp']}°C',
-                  style: Theme.of(context).textTheme.bodySmall,)
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),)
               ],
             ),
           );

@@ -14,12 +14,12 @@ class WeeklyForecast extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(day['day'], style: Theme.of(context).textTheme.titleSmall),
+              Text(day['day'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white)),
               Image.network(
                 'https://openweathermap.org/img/wn/${day['icon']}@2x.png',
                 width: 30,
               ),
-              Text('${day['min']}° / ${day['max']}°',style: Theme.of(context).textTheme.titleSmall),
+              Text('${day['min']}° / ${day['max']}°',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
             ],
           ),
         );

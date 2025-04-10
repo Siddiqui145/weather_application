@@ -13,14 +13,16 @@ class WeatherCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white12),
+        border: Border.all(color: Colors.white24),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             weather.cityName,
-            style:Theme.of(context).textTheme.titleMedium,
+            style:Theme.of(context).textTheme.titleMedium!.copyWith(
+              color: Colors.white
+            ),
           ),
           const SizedBox(height: 10),
           Row(
@@ -28,7 +30,9 @@ class WeatherCard extends StatelessWidget {
             children: [
               Text(
                 '${weather.temperature}°C',
-                style:Theme.of(context).textTheme.bodySmall,
+                style:Theme.of(context).textTheme.titleSmall!.copyWith(
+              color: Colors.white
+              ),
               ),
               Image.network(
                 'https://openweathermap.org/img/wn/${weather.icon}@2x.png',
@@ -39,7 +43,9 @@ class WeatherCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             weather.description,
-            style:Theme.of(context).textTheme.titleSmall,
+            style:Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Colors.white
+            ),
           ),
         ],
       ),

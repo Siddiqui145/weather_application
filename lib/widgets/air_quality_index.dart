@@ -21,8 +21,8 @@ class AirQualityIndex extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("AQI: $aqi", style: Theme.of(context).textTheme.titleSmall),
-          Text(status, style: Theme.of(context).textTheme.titleSmall),
+          Text("AQI: $aqi", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
+          Text(status, style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
         ],
       ),
       );
