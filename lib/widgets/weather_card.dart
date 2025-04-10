@@ -28,16 +28,17 @@ class WeatherCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '${weather.temperature}°C',
-                style:Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: Colors.white
-              ),
-              ),
-              Image.network(
-                'https://openweathermap.org/img/wn/${weather.icon}@2x.png',
-                width: 60,
-              ),
+              Flexible(
+      child: Text(
+        '${weather.temperature}°C',
+        style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),
+      ),
+    ),
+    Image.network(
+      'https://openweathermap.org/img/wn/${weather.icon}@2x.png',
+      width: 60,
+      errorBuilder: (context, error, stackTrace) => const Icon(Icons.error, color: Colors.red),
+    ),
             ],
           ),
           const SizedBox(height: 8),

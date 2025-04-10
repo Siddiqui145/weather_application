@@ -12,10 +12,10 @@ class HourlyForecast extends StatelessWidget {
     return SizedBox(
       height: 110,
 
-      child: ListView.builder(
+      child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: hourly.length,
-        //separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           
           final hour = hourly[index];
