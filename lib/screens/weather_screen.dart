@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_application/providers/weather_provider.dart';
 import 'package:weather_application/widgets/air_quality_index.dart';
+import 'package:weather_application/widgets/custom_text_field.dart';
 import 'package:weather_application/widgets/hourly_forecast.dart';
 import 'package:weather_application/widgets/weather_card.dart';
 import 'package:weather_application/widgets/weekly_forecast.dart';
@@ -14,15 +15,15 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  final TextEditingController _controller = TextEditingController(
-    text: "Boston"
+  final TextEditingController _cityController = TextEditingController(
+    text: 'Boston'
   );
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<WeatherProvider>(context, listen: false).getWeather(_controller.text);
+      Provider.of<WeatherProvider>(context, listen: false).getWeather(_cityController.text);
     });
   }
 
@@ -39,9 +40,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         backgroundColor: Colors.black,
         actions: [
           IconButton(onPressed: () {
-            setState(() {
-              provider.getWeather(_controller.text);
-            });
+              Provider.of<WeatherProvider>(context, listen: false).getWeather(_cityController.text);
           }, icon: const Icon(Icons.refresh, color: Colors.white,))
         ],
       ),
@@ -60,6 +59,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+                      CustomTextField(hintText: 'Enter City Name', controller: _cityController),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+
                       WeatherCard(weather: provider.weather!),
                       const SizedBox(
                         height: 30,
