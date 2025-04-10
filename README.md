@@ -17,9 +17,10 @@ A sleek and modern Flutter weather application using the [OpenWeatherMap API](ht
 
 ## 📸 Screenshots
 
-![Screenshot_1744284549](https://github.com/user-attachments/assets/b9b9583a-215f-42de-8229-d78b19ae6201)
-![Screenshot_1744284691](https://github.com/user-attachments/assets/284de3b5-463e-4b91-9e75-c47105323827)
-![Screenshot_1744284643](https://github.com/user-attachments/assets/ff52863f-4c0c-4d2d-a024-9a136a9641e7)
+
+![Screenshot_20250410_184451](https://github.com/user-attachments/assets/212eb09c-9b7b-42e1-80f4-a8428cf2ba48)
+![Screenshot_20250410_184425](https://github.com/user-attachments/assets/b01f593f-4899-4083-b2ca-633e68cf8d19)
+![Screenshot_20250410_184411](https://github.com/user-attachments/assets/a7cae443-6421-4060-8f2c-a728c1659b14)
 
 
 ---
